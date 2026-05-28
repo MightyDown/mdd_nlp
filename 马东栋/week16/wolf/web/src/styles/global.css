@@ -1,0 +1,286 @@
+/* ===== CSS Variables ===== */
+:root {
+  --bg-primary: #08080c;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a26;
+  --bg-card: #14141e;
+  --border: #252532;
+  --border-active: #3a3a4a;
+
+  --text-primary: #f0eeec;
+  --text-secondary: #b0aeb6;
+  --text-muted: #8c8a94;
+
+  --accent-werewolf: #c0392b;
+  --accent-werewolf-soft: rgba(192, 57, 43, 0.15);
+  --accent-villager: #4a8ec9;
+  --accent-villager-soft: rgba(74, 142, 201, 0.12);
+  --accent-gold: #c4a35a;
+  --accent-moon: #b8c5d6;
+  --accent-moon-soft: rgba(184, 197, 214, 0.08);
+
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Noto Serif SC', serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --shadow-card: 0 2px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow-werewolf: 0 0 20px rgba(192, 57, 43, 0.3);
+  --shadow-glow-villager: 0 0 20px rgba(74, 142, 201, 0.2);
+  --shadow-glow-gold: 0 0 24px rgba(196, 163, 90, 0.25);
+}
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+/* ===== Noise texture overlay ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-active);
+}
+
+/* ===== Ant Design Overrides ===== */
+.ant-upload-drag {
+  background: var(--bg-secondary) !important;
+  border: 1px dashed var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+}
+.ant-upload-drag:hover {
+  border-color: var(--accent-moon) !important;
+}
+.ant-upload-drag-icon {
+  color: var(--text-muted) !important;
+}
+.ant-upload-text {
+  color: var(--text-secondary) !important;
+  font-family: var(--font-body) !important;
+}
+.ant-upload-hint {
+  color: var(--text-muted) !important;
+}
+
+.ant-tag {
+  font-family: var(--font-display) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm) !important;
+  text-transform: uppercase;
+  color: #fff !important;
+}
+.ant-tag-red {
+  background: rgba(192, 57, 43, 0.55) !important;
+  border-color: rgba(192, 57, 43, 0.7) !important;
+}
+.ant-tag-blue {
+  background: rgba(74, 142, 201, 0.45) !important;
+  border-color: rgba(74, 142, 201, 0.6) !important;
+}
+
+.ant-card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--radius-md) !important;
+}
+.ant-card-head {
+  border-bottom-color: var(--border) !important;
+}
+.ant-card-head-title {
+  color: var(--text-primary) !important;
+  font-family: var(--font-display) !important;
+}
+
+.ant-btn {
+  font-family: var(--font-display) !important;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text-secondary) !important;
+  background: var(--bg-tertiary) !important;
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+.ant-btn:hover,
+.ant-btn:focus {
+  color: var(--text-primary) !important;
+  border-color: var(--accent-moon) !important;
+  background: var(--bg-tertiary) !important;
+}
+.ant-btn:active {
+  color: #fff !important;
+  background: var(--accent-moon-soft) !important;
+  border-color: var(--accent-moon) !important;
+}
+.ant-btn[disabled] {
+  color: var(--text-muted) !important;
+  background: var(--bg-secondary) !important;
+  border-color: var(--border) !important;
+  opacity: 0.5;
+}
+
+/* Button group — remove gap between adjacent buttons */
+.ant-btn-group .ant-btn:not(:first-child) {
+  margin-left: 0;
+}
+
+.ant-collapse {
+  background: transparent !important;
+  border: none !important;
+}
+.ant-collapse-item {
+  border-bottom: 1px solid var(--border) !important;
+}
+.ant-collapse-header {
+  color: var(--text-primary) !important;
+  font-family: var(--font-display) !important;
+}
+.ant-collapse-content {
+  background: transparent !important;
+  border-top: none !important;
+}
+
+.ant-steps-item-title {
+  font-family: var(--font-display) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.05em;
+}
+
+.ant-empty-description {
+  color: var(--text-muted) !important;
+}
+
+.ant-modal-content {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border) !important;
+}
+.ant-modal-header {
+  background: transparent !important;
+  border-bottom-color: var(--border) !important;
+}
+.ant-modal-title {
+  color: var(--text-primary) !important;
+  font-family: var(--font-display) !important;
+}
+
+.ant-statistic-title {
+  font-family: var(--font-display) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em;
+  color: var(--text-muted) !important;
+}
+.ant-statistic-content {
+  font-family: var(--font-display) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ===== Additional Ant Design overrides for dark text ===== */
+.ant-steps-item-title {
+  color: var(--text-primary) !important;
+}
+.ant-steps-item-description {
+  color: var(--text-secondary) !important;
+}
+.ant-steps-item-wait .ant-steps-item-icon {
+  border-color: var(--text-muted) !important;
+}
+.ant-steps-item-wait .ant-steps-item-icon > .ant-steps-icon {
+  color: var(--text-muted) !important;
+}
+.ant-input {
+  color: var(--text-primary) !important;
+  background: var(--bg-tertiary) !important;
+  border-color: var(--border) !important;
+}
+.ant-input::placeholder {
+  color: var(--text-muted) !important;
+}
+.ant-input-number {
+  color: var(--text-primary) !important;
+  background: var(--bg-tertiary) !important;
+  border-color: var(--border) !important;
+}
+.ant-input-number-input {
+  color: var(--text-primary) !important;
+}
+.ant-slider-rail {
+  background: var(--border) !important;
+}
+.ant-slider-track {
+  background: var(--accent-moon) !important;
+}
+.ant-switch-inner {
+  color: var(--text-secondary) !important;
+}
+.ant-upload-drag .ant-upload-drag-container {
+  color: var(--text-secondary) !important;
+}
+
+/* ===== Utility animations ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes moonGlow {
+  0%, 100% { box-shadow: 0 0 12px rgba(184, 197, 214, 0.15); }
+  50% { box-shadow: 0 0 28px rgba(184, 197, 214, 0.35); }
+}
+
+.anim-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+.anim-fade-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
